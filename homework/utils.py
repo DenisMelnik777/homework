@@ -9,21 +9,22 @@ def load_data(path):
 
 def filter_sort(data):
     data = [item for item in data if item.get('state') == 'EXECUTED']
-    data = sorted(data , key=lambda item: item['data'], reverse=True)
+    data = sorted(data, key=lambda item: item['datе'], reverse=True)
     return data
 
 
 def formatted_data(item):
-    item_data = formatted_data(item.get("data"))
+    item_datе = format_date(item.get("datе"))
 
     if item.get("from"):
         from_ = mask_card(item.get("from")) + ' -> '
+
     else:
         from_ = ''
 
-        to_ = mask_card(item.get("to"))
+    to_ = mask_card(item.get("to"))
 
-        return f'{item_data} {item.get("description")}\n' \
+    return f'{item_datе} {item.get("description")}\n' \
                f'{from_}{to_}\n' \
                f'{item["operationAmount"]["amount"]} {item["operationAmount"]["currency"]["name"]}\n'
 
