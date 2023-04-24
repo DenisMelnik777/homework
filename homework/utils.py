@@ -9,12 +9,12 @@ def load_data(path):
 
 def filter_sort(data):
     data = [item for item in data if item.get('state') == 'EXECUTED']
-    data = sorted(data, key=lambda item: item['datе'], reverse=True)
+    data = sorted(data, key=lambda item: item['date'], reverse=True)
     return data
 
 
 def formatted_data(item):
-    item_datе = format_date(item.get("datе"))
+    item_datе = format_date(item.get("date"))
 
     if item.get("from"):
         from_ = mask_card(item.get("from")) + ' -> '
@@ -25,8 +25,8 @@ def formatted_data(item):
     to_ = mask_card(item.get("to"))
 
     return f'{item_datе} {item.get("description")}\n' \
-               f'{from_}{to_}\n' \
-               f'{item["operationAmount"]["amount"]} {item["operationAmount"]["currency"]["name"]}\n'
+           f'{from_}{to_}\n' \
+           f'{item["operationAmount"]["amount"]} {item["operationAmount"]["currency"]["name"]}\n'
 
 
 def format_date(srt_date):
@@ -40,5 +40,5 @@ def mask_card(card):
         return f'{card[0]} **{card[-1][-4:]}'
     return f'{" ".join(card[:-1])}{card[-1][:4]} {card[-1][4:6]}** **** {card[-1][-4:]}'
 
-
-
+if __name__ == '__main__':
+    file_data = load_data()
